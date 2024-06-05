@@ -1,5 +1,5 @@
 module "scheduler" {
-  source = "github.com/inaciogu/terraform-aws-event-bridge-sns-scheduler"
+  source = "github.com/Coaktion/terraform-aws-event-bridge-sns-scheduler-module"
 
   region     = var.aws_region
   account_id = var.account_id

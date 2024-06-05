@@ -41,7 +41,7 @@ module "sns_topic_subscription" {
 }
 
 module "test" {
-  source = "../"
+  source = "../" # "github.com/Coaktion/terraform-aws-ecs-queues-based-autoscaling-module/tree/main"
 
   account_id = data.aws_caller_identity.current.account_id
   aws_region          = "us-east-1"
