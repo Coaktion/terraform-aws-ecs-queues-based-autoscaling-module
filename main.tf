@@ -17,6 +17,8 @@ module "scheduler" {
       "messages_per_task" = var.messages_per_task,
       "cluster_name"      = var.cluster_name,
       "service_name"      = var.service.name,
+      "min_tasks"         = var.service.autoscaling.min_capacity,
+      "max_tasks"         = var.service.autoscaling.max_capacity,
     })
     timezone = "America/Sao_Paulo"
   }]

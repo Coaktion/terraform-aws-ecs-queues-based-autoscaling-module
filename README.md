@@ -30,11 +30,7 @@ module "test" {
     autoscaling = {
       max_capacity            = 10
       min_capacity            = 1
-      metric_target_value     = 4
-      scale_up_cooldown       = 30
-      scale_down_cooldown     = 60
-      scale_up_alarm_period   = 60
-      scale_down_alarm_period = 120
+      use_alarms              = false
     }
     task_definition = {
       cpu         = 512
@@ -69,6 +65,37 @@ module "test" {
 }
 
 ```
+
+## Autoscaling method
+The autoscaling can be triggered by alarms or using the [Autoscaling lambda](https://github.com/Coaktion/process-queues-lambda). This is defined by the variable use_alarms on the example below.
+
+example using alarm:
+````
+  service = {
+    name          = "test-service"
+    desired_count = 1
+    autoscaling = {
+      max_capacity            = 10
+      min_capacity            = 1
+      metric_target_value     = 4
+      scale_up_cooldown       = 30
+      scale_down_cooldown     = 60
+      scale_up_alarm_period   = 60
+      scale_down_alarm_period = 120
+    }
+````
+example using only the lambda:
+````
+  service = {
+    name          = "test-service"
+    desired_count = 1
+    autoscaling = {
+      max_capacity            = 10
+      min_capacity            = 1
+      use_alarm               = false
+    }
+````
+
 
 ## Network configuration
 
