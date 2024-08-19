@@ -66,6 +66,7 @@ resource "aws_appautoscaling_policy" "ecs_queues_require_consumer_policy" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_scale_up_alarm" {
+  count = var.service.autoscaling.use_alarms ? 1 : 0
   alarm_name          = "${var.cluster_name}-${var.service.name}-scale-up-alarm"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 1
@@ -83,6 +84,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_scale_up_alarm" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_scale_down_alarm" {
+  count = var.service.autoscaling.use_alarms ? 1 : 0
   alarm_name          = "${var.cluster_name}-${var.service.name}-scale-down-alarm"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = 1
@@ -100,6 +102,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_scale_down_alarm" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_queues_require_consumer_alarm" {
+  count = var.service.autoscaling.use_alarms ? 1 : 0
   alarm_name          = "${var.cluster_name}-${var.service.name}-queues-require-consumer-alarm"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 1
