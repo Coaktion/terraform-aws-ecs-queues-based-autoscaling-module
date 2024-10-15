@@ -61,17 +61,17 @@ variable "create_service" {
 variable "service" {
   description = "ECS service to be scaled up"
   type = object({
-    name          = string           # Name of the service
-    desired_count = optional(number) # Desired number of tasks
+    name             = string           # Name of the service
+    desired_count    = optional(number) # Desired number of tasks
     autoscaling = object({
-      min_capacity            = number                        # Minimum number of tasks
-      max_capacity            = number                        # Maximum number of tasks
-      use_alarms              = bool                          # Whether to create alarms
-      metric_target_value     = optional(number)              # Target value of the metric
-      scale_up_cooldown       = optional(number)              # Cooldown of the scale up policy
-      scale_down_cooldown     = optional(number)              # Cooldown of the scale down policy
-      scale_up_alarm_period   = optional(number)              # Period of the scale up alarm
-      scale_down_alarm_period = optional(number)              # Period of the scale down alarm
+      min_capacity                         = number           # Minimum number of tasks
+      max_capacity                         = number           # Maximum number of tasks
+      use_alarms                           = bool             # Whether to create alarms
+      metric_target_value                  = optional(number) # Target value of the metric
+      scale_up_cooldown                    = optional(number) # Cooldown of the scale up policy
+      scale_down_cooldown                  = optional(number) # Cooldown of the scale down policy
+      scale_up_alarm_period                = optional(number) # Period of the scale up alarm
+      scale_down_alarm_period              = optional(number) # Period of the scale down alarm
       queues_require_consumer_alarm_period = optional(number) # Period of the queues require consumer alarm
     })
     task_definition = optional(object({
@@ -87,9 +87,9 @@ variable "service" {
           protocol      = string # Protocol of the port
         })))
         environment = optional(list(object({
-          name  = string              # Name of the environment variable
-          value = string              # Value of the environment variable
-        })))                          # Environment variables
+          name  = string                  # Name of the environment variable
+          value = string                  # Value of the environment variable
+        })))                              # Environment variables
         secret_manager = optional(string) # Name of the secret to get the environment variables
         secrets = optional(list(object({
           name      = string # Name of the secret
@@ -100,6 +100,7 @@ variable "service" {
       memory = number # Memory units
     }))
     network = optional(object({
+      assign_public_ip = optional(bool)   # If should auto assign  public ip
       security_groups_tag = object({
         key    = string       # Key of the tag
         values = list(string) # Value of the tag
