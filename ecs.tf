@@ -6,8 +6,10 @@ module "ecs-service" {
   source = "github.com/Coaktion/terraform-aws-ecs-fargate-module"
   count  = var.create_service ? 1 : 0
 
-  aws_region = var.aws_region
-  account_id = var.account_id
+  aws_region            = var.aws_region
+  account_id            = var.account_id
+  aws_access_key_id     = var.aws_access_key_id
+  aws_secret_access_key = var.aws_secret_access_key
 
   vpc_cidr_block             = local.has_vpc ? var.service.vpc.vpc_cidr_block : null
   public_subnet_cidr_blocks  = local.has_vpc ? var.service.vpc.public_subnet_cidr_blocks : []
