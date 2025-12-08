@@ -16,6 +16,9 @@ module "ecs-service" {
   private_subnet_cidr_blocks = local.has_vpc ? var.service.vpc.private_subnet_cidr_blocks : []
   security_group_name        = local.has_vpc ? var.service.vpc.security_group_name : null
 
+  enable_docker_build        = var.enable_docker_build
+  image_tag                  = var.image_tag
+
   clusters = [
     {
       name           = var.cluster_name
