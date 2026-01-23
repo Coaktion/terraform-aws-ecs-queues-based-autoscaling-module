@@ -118,3 +118,15 @@ variable "service" {
     }))
   })
 }
+
+variable "enable_docker_build" {
+  description = "Whether to build the docker image"
+  type        = bool
+  default     = true
+}
+
+variable "image_tag" {
+  description = "Allows changing the default image tag"
+  type        = string
+  default     = "latest"
+}
